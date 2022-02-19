@@ -26,6 +26,7 @@ alias delcom='sed -e "/^#/d; /^$/d;"'
 
 alias v="vim"
 alias nv="nvim"
+alias g="git"
 alias gs="git status"
 alias gc="git commit -m"
 alias gco="git checkout"
@@ -85,3 +86,9 @@ function ghql() {
 # wsl2で動かなかったので更に変更
 bind -x '"\1041": ghql'
 bind '"\C-g":"\1041\C-m"'
+
+alias k="kubectl"
+
+. <(kubectl completion bash)
+. <(istioctl completion bash)
+complete -o default -F __start_kubectl k
