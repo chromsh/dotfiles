@@ -50,10 +50,10 @@ shopt -s no_empty_cmd_completion
 
 HISTTIMEFORMAT='[%Y-%m-%d %T] '; export HISTTIMEFORMAT
 
-# XOFF,XONを無効化 (C-s, C-q)
-stty start undef
 # disable C-s
 if [ -t 0 ]; then
+	# XOFF,XONを無効化 (C-s, C-q)
+	stty start undef
 	stty stop undef
 fi
 
@@ -84,8 +84,11 @@ function ghql() {
 #bind -x '"\2010": ghql'
 #bind '"\C-g":"\2010\C-m"'
 # wsl2で動かなかったので更に変更
-bind -x '"\1041": ghql'
-bind '"\C-g":"\1041\C-m"'
+
+if [[ $- == *i* ]]; then
+	bind -x '"\1041": ghql'
+	bind '"\C-g":"\1041\C-m"'
+fi
 
 alias k="kubectl"
 
